@@ -19,6 +19,8 @@ public class BrowserStackLocalTest {
         l = new Local();
         options = new HashMap<String, String>();
         options.put("key", System.getenv("BROWSERSTACK_ACCESS_KEY"));
+        options.put("v", "true");
+        options.put("logFile", "/browserstack/logs.txt");
     }
 
     @Test
