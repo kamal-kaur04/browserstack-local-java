@@ -18,7 +18,7 @@ jobs:
       max-parallel: 3
       matrix:
         java: [ '8', '11', '17' ]
-        os: [ 'macos-latest' ]
+        os: [ 'macos-latest', 'ubuntu-latest' ]
     name: JUnit Repo ${{ matrix.Java }} - ${{ matrix.os }} Sample
     env:
       BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
