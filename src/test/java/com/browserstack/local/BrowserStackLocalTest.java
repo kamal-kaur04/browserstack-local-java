@@ -19,23 +19,35 @@ public class BrowserStackLocalTest {
         l = new Local();
         options = new HashMap<String, String>();
         options.put("key", System.getenv("BROWSERSTACK_ACCESS_KEY"));
+        options.put("v", "true");
+        options.put("logFile", "./src/test/logs.txt");
     }
 
     @Test
     public void testIsRunning() throws Exception {
         assertFalse(l.isRunning());
-        l.start(options);
+        System.out.println("It's a test!!" + l.isRunning());
+        try {
+            l.start(options);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("It's a test!! After" + l.isRunning());
         assertTrue(l.isRunning());
     }
 
     @Test
     public void testMultipleBinary() throws Exception {
+        System.out.println("It's a test!! testMultipleBinary Before" + l.isRunning());
         l.start(options);
+        System.out.println("It's a test!! testMultipleBinary After" + l.isRunning());
         assertTrue(l.isRunning());
         Local l2 = new Local();
         try {
             l2.start(options);
+            System.out.println("It's a test!! testMultipleBinary In" + l2.isRunning());
         } catch (LocalException e) {
+            e.printStackTrace();
             assertFalse(l2.isRunning());
         }
     }

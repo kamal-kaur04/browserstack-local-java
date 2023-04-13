@@ -78,6 +78,7 @@ public class Local {
             int r = proc.waitFor();
 
             JSONObject obj = new JSONObject(!stdout.equals("") ? stdout : stderr);
+            System.out.println("obj" + obj.toString(4));
             if(!obj.getString("state").equals("connected")){
                 throw new LocalException(obj.getJSONObject("message").getString("message"));
             }
@@ -124,6 +125,7 @@ public class Local {
      * @return true if Local instance is running, else false
      */
     public boolean isRunning() throws Exception {
+        System.out.println("PID" + pid);
         if (pid == 0) return false;
         return isProcessRunning(pid);
     }
@@ -193,6 +195,7 @@ public class Local {
 
         proc = runCommand(cmd);
         int exitValue = proc.waitFor();
+        System.out.println("exitValue" + exitValue);
 
         // 0 is the default exit code which means the process exists
         return exitValue == 0;
