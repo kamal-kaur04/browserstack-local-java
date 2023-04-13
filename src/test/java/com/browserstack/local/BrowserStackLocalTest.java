@@ -20,7 +20,7 @@ public class BrowserStackLocalTest {
         options = new HashMap<String, String>();
         options.put("key", System.getenv("BROWSERSTACK_ACCESS_KEY"));
         options.put("v", "true");
-        options.put("logFile", "/logs/logs.txt");
+//        options.put("logFile", "/logs/logs.txt");
     }
 
     @Test
