@@ -25,7 +25,11 @@ public class BrowserStackLocalTest {
     public void testIsRunning() throws Exception {
         assertFalse(l.isRunning());
         System.out.println("It's a test!!");
-        l.start(options);
+        try {
+            l.start(options);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         assertTrue(l.isRunning());
     }
 
@@ -37,6 +41,7 @@ public class BrowserStackLocalTest {
         try {
             l2.start(options);
         } catch (LocalException e) {
+            e.printStackTrace();
             assertFalse(l2.isRunning());
         }
     }
