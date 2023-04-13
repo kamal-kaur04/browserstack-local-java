@@ -24,6 +24,7 @@ public class BrowserStackLocalTest {
     @Test
     public void testIsRunning() throws Exception {
         assertFalse(l.isRunning());
+        System.out.println("It's a test!!");
         l.start(options);
         assertTrue(l.isRunning());
     }
