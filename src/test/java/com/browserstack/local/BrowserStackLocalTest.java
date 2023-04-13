@@ -24,12 +24,13 @@ public class BrowserStackLocalTest {
     @Test
     public void testIsRunning() throws Exception {
         assertFalse(l.isRunning());
-        System.out.println("It's a test!!");
+        System.out.println("It's a test!!" + l.isRunning());
         try {
             l.start(options);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("It's a test!! After" + l.isRunning());
         assertTrue(l.isRunning());
     }
 
