@@ -1,0 +1,44 @@
+# This job is to test different maven profiles in sdk branch again Pull Request raised
+# This workflow targets Java with Maven execution
+
+name: Java SDK Test workflow for Maven on workflow_dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      pull_request_number:
+        description: 'The pull request number to build'
+        required: true
+
+jobs:
+  comment-run:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        java: [ '8', '11', '17' ]
+        os: [ 'macos-latest' ]
+    name: JUnit Repo ${{ matrix.Java }} - ${{ matrix.os }} Sample
+    env:
+      BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+      BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: refs/pull/${{ github.event.inputs.pull_request_number }}/head
+      - name: Fetch Commit SHA
+        run: |
+          git log -1 --format='%H'
+          echo "commit_sha=$(git log -1 --format='%H')" >> $GITHUB_ENV
+          echo "commit_sha=$(git log -1 --format='%H')" >> $env:GITHUB_ENV
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java }}
+      - name: Run mvn test
+        run: |
+          mvn compile
+          mvn test
