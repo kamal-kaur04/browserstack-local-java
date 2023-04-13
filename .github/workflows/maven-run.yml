@@ -42,3 +42,8 @@ jobs:
         run: |
           mvn compile
           mvn test
+      - if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: browserstack-sdk logs JUnit-5
+          path: ./target/surefire-reports
