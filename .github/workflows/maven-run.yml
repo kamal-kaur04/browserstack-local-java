@@ -49,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Local Repo ${{ matrix.Java }} - ${{ matrix.os }} - ${{ matrix.version }}
-          path: ./logs/logs.txt
+          path: ./src/test/logs.txt
