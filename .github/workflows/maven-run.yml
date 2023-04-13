@@ -20,7 +20,7 @@ jobs:
         java: [ '8', '11', '17' ]
         os: [ 'ubuntu-latest', 'macos-latest' ]
         version: [12, 14, 16]
-    name: Local Repo ${{ matrix.Java }} - ${{ matrix.os }}
+    name: Local Repo ${{ matrix.Java }} - ${{ matrix.os }} - ${{ matrix.version }}
     env:
       BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
       BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
@@ -46,5 +46,5 @@ jobs:
       - if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: Local Repo ${{ matrix.Java }} - ${{ matrix.os }}
-          path: ./target/surefire-reports
+          name: Local Repo ${{ matrix.Java }} - ${{ matrix.os }} - ${{ matrix.version }}
+          path: ./logs/logs.txt
