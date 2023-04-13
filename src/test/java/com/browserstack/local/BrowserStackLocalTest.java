@@ -38,11 +38,14 @@ public class BrowserStackLocalTest {
 
     @Test
     public void testMultipleBinary() throws Exception {
+        System.out.println("It's a test!! testMultipleBinary Before" + l.isRunning());
         l.start(options);
+        System.out.println("It's a test!! testMultipleBinary After" + l.isRunning());
         assertTrue(l.isRunning());
         Local l2 = new Local();
         try {
             l2.start(options);
+            System.out.println("It's a test!! testMultipleBinary In" + l2.isRunning());
         } catch (LocalException e) {
             e.printStackTrace();
             assertFalse(l2.isRunning());
