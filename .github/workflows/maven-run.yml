@@ -19,7 +19,8 @@ jobs:
       matrix:
         java: [ '8', '11', '17' ]
         os: [ 'ubuntu-latest', 'macos-latest' ]
-    name: JUnit Repo ${{ matrix.Java }} - ${{ matrix.os }} Sample
+        version: [12, 14, 16]
+    name: Local Repo ${{ matrix.Java }} - ${{ matrix.os }}
     env:
       BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
       BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
@@ -45,5 +46,5 @@ jobs:
       - if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: browserstack-sdk logs JUnit-5
+          name: Local Repo ${{ matrix.Java }} - ${{ matrix.os }}
           path: ./target/surefire-reports
