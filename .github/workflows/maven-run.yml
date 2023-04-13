@@ -41,6 +41,8 @@ jobs:
           java-version: ${{ matrix.java }}
       - name: Run mvn test
         run: |
+          mkdir $HOME/.browserstack
+          chmod -R 777 $HOME/.browserstack
           mvn compile
           mvn test
       - if: always()
